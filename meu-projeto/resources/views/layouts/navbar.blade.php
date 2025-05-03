@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-secondary">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="{{ url('/') }}">Home</a>
@@ -22,7 +22,7 @@
                     <a class="nav-link" href="{{ url('/turmas') }}">Turmas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/niveis') }}">Níveis</a>
+                    <a class="nav-link" href="{{ url('/nivels') }}">Níveis</a>
                 </li>
 
                 <li class="nav-item dropdown">

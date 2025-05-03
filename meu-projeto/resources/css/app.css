@@ -1,11 +1,91 @@
-@import 'tailwindcss';
+* {
+    margin: 0px;
+    padding: 0px;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+html {
+    height: 100%;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+body {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
+
+}
+
+h1{
+    margin: 10px 0px;
+    padding: 10px;
+}
+.container {
+    background-color: #fff;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer{
+    background-color: #333; 
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.navbar {
+    background-color: #333 !important;
+}
+
+.navbar .nav-link {
+    color: white;
+}
+
+.navbar .nav-link:hover {
+    color: #9edba1;
+}
+
+/* Cor do título da marca na navbar */
+.navbar .navbar-brand {
+    color: #FFFFFF;  /* Cor do texto da marca */
+}
+
+.navbar .navbar-brand:hover {
+    color: #9edba1;  /* Cor quando o link for hover (dourado) */
+}
+
+/* Cor do botão de busca */
+.navbar .btn-outline-success {
+    color: #3d3d3d;
+    border-color: white;
+    background-color: white;
+}
+
+.navbar .btn-outline-success:hover {
+    background-color: #9edba1;  /* Cor de fundo ao passar o mouse */
+    color: #18411a;  /* Cor do texto quando estiver no hover */
+    border-color: #9edba1;  /* Cor da borda quando estiver no hover */
+}
+
+/* Cor do campo de busca */
+.navbar .form-control {
+    background-color: #ffffff;  /* Cor de fundo do campo de busca */
+    color: black;  /* Cor do texto */
+}
+
+.button{
+    background-color: #808080;
+    color: white;
+    border-radius:10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    width: fit-content
 }

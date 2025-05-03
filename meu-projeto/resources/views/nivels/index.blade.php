@@ -4,9 +4,9 @@
 
 @section('content')
 
-<h1>INDEX NIVEIS</h1>
+<h1>NIVEIS</h1>
 
-<a href="{{ route('nivels.create') }}" class="btn btn-primary">Add Nível</a>
+<a href="{{ route('nivels.create') }}" class="button">Add Nível</a>
 
 <table class="table table-white mt-3">
     <thead>
