@@ -33,13 +33,15 @@ class NivelController extends Controller
 
     public function show(string $id)
     {
-        //
+        $nivel = Nivel::findOrFail($id);
+        return view('nivels.show')->with('nivel', $nivel);
     }
 
 
     public function edit(string $id)
     {
-        //
+        $nivel = Nivel::findOrFail($id);
+        return view('nivels.edit')->with('nivel', $nivel);
     }
 
 

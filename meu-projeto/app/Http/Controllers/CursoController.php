@@ -21,7 +21,7 @@ class CursoController extends Controller
      */
     public function create()
     {
-        //
+        return view('cursos.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class CursoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        Curso::create($request->all());
+
+        return redirect()->route('cursos.index')->with('success', 'Curso criado com sucesso.');
     }
 
     /**

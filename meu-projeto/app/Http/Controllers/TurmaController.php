@@ -21,7 +21,7 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        //
+        return view('turmas.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class TurmaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        Turma::create($request->all());
+
+        return redirect()->route('turmas.index')->with('success', 'Turma criada com sucesso.');
     }
 
     /**

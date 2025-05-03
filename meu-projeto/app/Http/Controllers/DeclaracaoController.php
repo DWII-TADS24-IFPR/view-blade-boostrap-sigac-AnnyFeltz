@@ -21,7 +21,7 @@ class DeclaracaoController extends Controller
      */
     public function create()
     {
-        //
+        return view('declaracoes.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class DeclaracaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        Declaracao::create($request->all());
+
+        return redirect()->route('declaracoes.index')->with('success', 'Declaração criada com sucesso.');
     }
 
     /**

@@ -21,7 +21,7 @@ class ComprovanteController extends Controller
      */
     public function create()
     {
-        //
+        return view('comprovantes.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class ComprovanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        Comprovante::create($request->all());
+
+        return redirect()->route('comprovantes.index')->with('success', 'Comprovante criado com sucesso.');
     }
 
     /**
