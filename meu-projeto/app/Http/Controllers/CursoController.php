@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Curso;
+use App\Models\Nivel;
 
 class CursoController extends Controller
 {
@@ -12,7 +13,7 @@ class CursoController extends Controller
      */
     public function index()
     {
-        $cursos = Curso::all();
+        $cursos = Curso::with('nivel')->get();
         return view('cursos.index')->with('cursos', $cursos);
     }
 
@@ -21,7 +22,8 @@ class CursoController extends Controller
      */
     public function create()
     {
-        return view('cursos.create');
+        $nivels = Nivel::all();
+        return view('cursos.create')->with('nivels', $nivels);
     }
 
     /**
@@ -31,7 +33,9 @@ class CursoController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'sigla' => 'required|string|max:10',
+            'total_horas' => 'required|integer',
+            'nivel_id' => 'required|exists:nivels,id',
         ]);
 
         Curso::create($request->all());

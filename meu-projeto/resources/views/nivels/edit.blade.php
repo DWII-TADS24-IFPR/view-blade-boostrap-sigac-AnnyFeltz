@@ -1,3 +1,7 @@
-<div>
-    <!-- Simplicity is the consequence of refined emotions. - Jean D'Alembert -->
-</div>
+@extends('layouts.app')
+
+@section('title', 'Create Nivel')
+
+@section('content')
+
+@endsection

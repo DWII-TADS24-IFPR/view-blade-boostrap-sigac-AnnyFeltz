@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Turma;
+use App\Models\Curso;
 
 class TurmaController extends Controller
 {
@@ -12,7 +13,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        $turmas = Turma::all();
+        $turmas = Turma::with('curso')->get();
         return view('turmas.index')->with('turmas', $turmas);
     }
 
@@ -21,7 +22,8 @@ class TurmaController extends Controller
      */
     public function create()
     {
-        return view('turmas.create');
+        $cursos = Curso::all();
+        return view('turmas.create')->with('cursos', $cursos);
     }
 
     /**
@@ -30,10 +32,9 @@ class TurmaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'ano' => 'required|integer',
+            'curso_id' => 'required|exists:cursos,id',
         ]);
-
         Turma::create($request->all());
 
         return redirect()->route('turmas.index')->with('success', 'Turma criada com sucesso.');

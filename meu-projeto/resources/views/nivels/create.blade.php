@@ -4,16 +4,20 @@
 
 @section('content')
 
-<h1>CRIAR NOVO NIVEL</h1>
+<div class="d-flex justify-content-between align-items-center">
+    <h1>CRIAR NOVO NIVEL</h1>
+    <a href="{{ route('nivels.index') }}" class="button">Voltar</a>
+</div>
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+
 @endif
 
 <form action="{{ route('nivels.store') }}" method="POST">
@@ -23,10 +27,8 @@
         <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="button">Salvar</button>
+
 </form>
-
-<a href="{{ route('nivels.index') }}" class="btn btn-primary">Voltar</a>
-
 
 @endsection

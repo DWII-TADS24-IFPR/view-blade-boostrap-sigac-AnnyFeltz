@@ -63,12 +63,15 @@ h1{
     color: #3d3d3d;
     border-color: white;
     background-color: white;
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
 }
 
 .navbar .btn-outline-success:hover {
     background-color: #9edba1;  /* Cor de fundo ao passar o mouse */
     color: #18411a;  /* Cor do texto quando estiver no hover */
     border-color: #9edba1;  /* Cor da borda quando estiver no hover */
+    transform: scale(0.95);
 }
 
 /* Cor do campo de busca */
@@ -80,6 +83,7 @@ h1{
 .button{
     background-color: #808080;
     color: white;
+    border: none;
     border-radius:10px;
     padding: 10px 20px;
     text-align: center;
@@ -87,5 +91,19 @@ h1{
     font-size: 16px;
     margin: 4px;
     cursor: pointer;
-    width: fit-content
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
+}
+
+.button a{
+    color: white;
+    text-decoration: none;
+}
+
+.button:hover{
+    background-color: #333;
+    color: white;
+    transform: scale(0.95);
 }
