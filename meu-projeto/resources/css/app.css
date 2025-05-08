@@ -17,10 +17,13 @@ body {
 
 }
 
-h1{
+h1,
+h2,
+h3 {
     margin: 10px 0px;
     padding: 10px;
 }
+
 .container {
     background-color: #fff;
     flex-grow: 1;
@@ -30,8 +33,8 @@ h1{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.footer{
-    background-color: #333; 
+.footer {
+    background-color: #333;
     color: white;
     text-align: center;
     padding: 20px;
@@ -51,11 +54,13 @@ h1{
 
 /* Cor do título da marca na navbar */
 .navbar .navbar-brand {
-    color: #FFFFFF;  /* Cor do texto da marca */
+    color: #FFFFFF;
+    /* Cor do texto da marca */
 }
 
 .navbar .navbar-brand:hover {
-    color: #9edba1;  /* Cor quando o link for hover (dourado) */
+    color: #9edba1;
+    /* Cor quando o link for hover (dourado) */
 }
 
 /* Cor do botão de busca */
@@ -68,23 +73,28 @@ h1{
 }
 
 .navbar .btn-outline-success:hover {
-    background-color: #9edba1;  /* Cor de fundo ao passar o mouse */
-    color: #18411a;  /* Cor do texto quando estiver no hover */
-    border-color: #9edba1;  /* Cor da borda quando estiver no hover */
+    background-color: #9edba1;
+    /* Cor de fundo ao passar o mouse */
+    color: #18411a;
+    /* Cor do texto quando estiver no hover */
+    border-color: #9edba1;
+    /* Cor da borda quando estiver no hover */
     transform: scale(0.95);
 }
 
 /* Cor do campo de busca */
 .navbar .form-control {
-    background-color: #ffffff;  /* Cor de fundo do campo de busca */
-    color: black;  /* Cor do texto */
+    background-color: #ffffff;
+    /* Cor de fundo do campo de busca */
+    color: black;
+    /* Cor do texto */
 }
 
-.button{
+.button {
     background-color: #808080;
     color: white;
     border: none;
-    border-radius:10px;
+    border-radius: 10px;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -97,12 +107,73 @@ h1{
     transition: transform 0.3s;
 }
 
-.button a{
+.button a {
     color: white;
     text-decoration: none;
 }
 
-.button:hover{
+.button:hover {
+    background-color: #333;
+    color: white;
+    transform: scale(0.95);
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-self: center;
+    width: 100%;
+    align-content: center;
+    justify-items: center;
+    row-gap: 60px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #cacaca;
+    width: 250px;
+    height: 300px;
+}
+
+
+.card h1, h2, h3 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centraliza horizontalmente */
+    justify-content: center;
+    height: 100%;
+    padding: 0;
+    margin: 0 auto; /* garante centralização se tiver largura definida */
+    width: fit-content; /* evita ocupar mais espaço do que necessário */
+}
+
+.card
+
+.button-card {
+    background-color: #9e9e9e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
+}
+
+.button-card:hover {
     background-color: #333;
     color: white;
     transform: scale(0.95);

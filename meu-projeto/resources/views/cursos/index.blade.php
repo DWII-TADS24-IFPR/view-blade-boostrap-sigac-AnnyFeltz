@@ -23,7 +23,7 @@
             <td>{{ $curso->id }}</td>
             <td>{{ $curso->nome }}</td>
             <td>{{ $curso->sigla }}</td>
-            <td>{{ $curso->nivel-id }}</td>
+            <td>{{ $curso->nivel_id }}</td>
         </tr>
         @endforeach
     </tbody>

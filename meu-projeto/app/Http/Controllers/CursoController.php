@@ -34,7 +34,7 @@ class CursoController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'sigla' => 'required|string|max:10',
-            'total_horas' => 'required|integer',
+            'total_horas' => 'required|numeric',
             'nivel_id' => 'required|exists:nivels,id',
         ]);
 

@@ -13,7 +13,7 @@
         <tr>
             <th>ID</th>
             <th>ANO</th>
-            <th>CURSO</th>
+            <th>CURSO_ID</th>
         </tr>
     </thead>
     <tbody>
@@ -21,7 +21,7 @@
         <tr>
             <td>{{ $turma->id }}</td>
             <td>{{ $turma->ano }}</td>
-            <td>{{ $turma->curso->nome ?? 'Sem curso' }}</td>
+            <td>{{ $turma->curso_id}}</td>
         </tr>
         @endforeach
     </tbody>
