@@ -44,7 +44,8 @@ class DeclaracaoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $declaracao = Declaracao::findOrFail($id);
+        return view('declaracoes.show')->with('declaracao', $declaracao);
     }
 
     /**
@@ -52,7 +53,8 @@ class DeclaracaoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $declaracao = Declaracao::findOrFail($id);
+        return view('declaracoes.edit')->with('declaracao', $declaracao);
     }
 
     /**
@@ -60,7 +62,15 @@ class DeclaracaoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        $declaracao = Declaracao::findOrFail($id);
+        $declaracao->update($request->all());
+
+        return redirect()->route('declaracoes.index')->with('success', 'Declaração atualizada com sucesso.');
     }
 
     /**
@@ -68,6 +78,9 @@ class DeclaracaoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $declaracao = Declaracao::findOrFail($id);
+        $declaracao->delete();
+
+        return redirect()->route('declaracoes.index')->with('success', 'Declaração excluída com sucesso.');
     }
 }

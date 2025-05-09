@@ -45,7 +45,8 @@ class TurmaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $turma = Turma::with('curso')->findOrFail($id);
+        return view('turmas.show')->with('turma', $turma);
     }
 
     /**
@@ -53,7 +54,9 @@ class TurmaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $turma = Turma::with('curso')->findOrFail($id);
+        $cursos = Curso::all();
+        return view('turmas.edit')->with(['turma' => $turma, 'cursos' => $cursos]);
     }
 
     /**
@@ -61,7 +64,15 @@ class TurmaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'ano' => 'required|integer',
+            'curso_id' => 'required|exists:cursos,id',
+        ]);
+
+        $turma = Turma::findOrFail($id);
+        $turma->update($request->all());
+
+        return redirect()->route('turmas.index')->with('success', 'Turma atualizada com sucesso.');
     }
 
     /**
@@ -69,6 +80,9 @@ class TurmaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $turma = Turma::findOrFail($id);
+        $turma->delete();
+
+        return redirect()->route('turmas.index')->with('success', 'Turma excluída com sucesso.');
     }
 }

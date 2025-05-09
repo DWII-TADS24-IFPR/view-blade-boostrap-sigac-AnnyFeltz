@@ -44,7 +44,8 @@ class ComprovanteController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comprovante = Comprovante::findOrFail($id);
+        return view('comprovantes.show')->with('comprovante', $comprovante);
     }
 
     /**
@@ -52,7 +53,8 @@ class ComprovanteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comprovante = Comprovante::findOrFail($id);
+        return view('comprovantes.edit')->with('comprovante', $comprovante);
     }
 
     /**
@@ -60,7 +62,15 @@ class ComprovanteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        $comprovante = Comprovante::findOrFail($id);
+        $comprovante->update($request->all());
+
+        return redirect()->route('comprovantes.index')->with('success', 'Comprovante atualizado com sucesso.');
     }
 
     /**
@@ -68,6 +78,9 @@ class ComprovanteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comprovante = Comprovante::findOrFail($id);
+        $comprovante->delete();
+
+        return redirect()->route('comprovantes.index')->with('success', 'Comprovante excluído com sucesso.');
     }
 }

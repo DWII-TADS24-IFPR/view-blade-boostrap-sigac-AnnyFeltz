@@ -44,7 +44,8 @@ class DocumentoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $documento = Documento::findOrFail($id);
+        return view('documentos.show')->with('documento', $documento);
     }
 
     /**
@@ -52,7 +53,8 @@ class DocumentoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $documento = Documento::findOrFail($id);
+        return view('documentos.edit')->with('documento', $documento);
     }
 
     /**
@@ -60,7 +62,15 @@ class DocumentoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'descricao' => 'nullable|string|max:1000',
+        ]);
+
+        $documento = Documento::findOrFail($id);
+        $documento->update($request->all());
+
+        return redirect()->route('documentos.index')->with('success', 'Documento atualizado com sucesso.');
     }
 
     /**
@@ -68,6 +78,9 @@ class DocumentoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $documento = Documento::findOrFail($id);
+        $documento->delete();
+
+        return redirect()->route('documentos.index')->with('success', 'Documento excluído com sucesso.');
     }
 }

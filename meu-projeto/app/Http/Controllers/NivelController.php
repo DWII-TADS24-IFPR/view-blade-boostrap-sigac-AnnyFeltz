@@ -47,11 +47,21 @@ class NivelController extends Controller
 
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|min:2|max:255',
+        ]);
+
+        $nivel = Nivel::findOrFail($id);
+        $nivel->update($request->all());
+
+        return redirect()->route('nivels.index')->with('success', 'Nível atualizado com sucesso!');
     }
 
     public function destroy(string $id)
     {
-        //
+        $nivel = Nivel::findOrFail($id);
+        $nivel->delete();
+
+        return redirect()->route('nivels.index')->with('success', 'Nível excluído com sucesso!');
     }
 }

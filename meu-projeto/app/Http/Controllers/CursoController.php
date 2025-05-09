@@ -48,7 +48,8 @@ class CursoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $curso = Curso::with('nivel')->findOrFail($id);
+        return view('cursos.show')->with('curso', $curso);
     }
 
     /**
@@ -56,7 +57,9 @@ class CursoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $curso = Curso::with('nivel')->findOrFail($id);
+        $nivels = Nivel::all();
+        return view('cursos.edit')->with(['curso' => $curso, 'nivels' => $nivels]);
     }
 
     /**
@@ -64,7 +67,17 @@ class CursoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'sigla' => 'required|string|max:10',
+            'total_horas' => 'required|numeric',
+            'nivel_id' => 'required|exists:nivels,id',
+        ]);
+
+        $curso = Curso::findOrFail($id);
+        $curso->update($request->all());
+
+        return redirect()->route('cursos.index')->with('success', 'Curso atualizado com sucesso.');
     }
 
     /**
@@ -72,6 +85,9 @@ class CursoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $curso = Curso::findOrFail($id);
+        $curso->delete();
+
+        return redirect()->route('cursos.index')->with('success', 'Curso excluído com sucesso.');
     }
 }

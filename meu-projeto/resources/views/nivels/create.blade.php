@@ -17,7 +17,6 @@
         @endforeach
     </ul>
 </div>
-
 @endif
 
 <form action="{{ route('nivels.store') }}" method="POST">
