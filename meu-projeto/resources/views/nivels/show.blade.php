@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Create Nivel')
+@section('title', 'Show Nivel')
 
 @section('content')
+
 <div class="d-flex justify-content-between align-items-center">
     <h1>Sobre o nivel</h1>
     <a href="{{ route('nivels.index') }}" class="button">Voltar</a>
@@ -24,4 +25,5 @@
         </td>
     </tr>
 </table>
+
 @endsection

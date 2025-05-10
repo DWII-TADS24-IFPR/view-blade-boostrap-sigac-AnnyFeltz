@@ -118,7 +118,17 @@ h3 {
     transform: scale(0.95);
 }
 
-.cards {
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: #cacaca;
+    width: 250px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.botoes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-self: center;
@@ -126,38 +136,39 @@ h3 {
     align-content: center;
     justify-items: center;
     row-gap: 60px;
+    padding: 60px;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    background-color: #cacaca;
-    width: 250px;
-    height: 300px;
+.botao {
+    background-color: #808080;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
 }
 
-
-.card h1, h2, h3 {
-    margin: 0px;
-    padding: 0px;
+.botao a {
+    color: white;
+    text-decoration: none;
 }
 
-.card ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centraliza horizontalmente */
-    justify-content: center;
-    height: 100%;
-    padding: 0;
-    margin: 0 auto; /* garante centralização se tiver largura definida */
-    width: fit-content; /* evita ocupar mais espaço do que necessário */
+.botao:hover {
+    background-color: #333;
+    color: white;
+    transform: scale(0.95);
 }
 
-.card
-
-.button-card {
-    background-color: #9e9e9e;
+.button-show {
+    background-color: #86bad8;
     color: white;
     border: none;
     border-radius: 10px;
@@ -173,8 +184,69 @@ h3 {
     transition: transform 0.3s;
 }
 
-.button-card:hover {
-    background-color: #333;
+.button-show a {
+    color: white;
+    text-decoration: none;
+}
+
+.button-show:hover {
+    background-color: #4d83a1;
+    color: white;
+    transform: scale(0.95);
+}
+
+.button-edit {
+    background-color: #8dd886;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
+}
+
+.button-edit a {
+    color: white;
+    text-decoration: none;
+}
+
+.button-edit:hover {
+    background-color: #4da151;
+    color: white;
+    transform: scale(0.95);
+}
+
+.button-delete {
+    background-color: #d88686;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    cursor: pointer;
+    width: fit-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, color 0.3s;
+    transition: transform 0.3s;
+}
+
+.button-delete a {
+    color: white;
+    text-decoration: none;
+}
+
+.button-delete:hover {
+    background-color: #a14d4d;
     color: white;
     transform: scale(0.95);
 }

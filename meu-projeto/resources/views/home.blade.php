@@ -8,87 +8,47 @@
 
 <h3>Bem vindo!</h3>
 
-<div class="cards">
-    <div class="card">
-        <ul>
-            <li><h3>Alunos</h3></li>
-            <li><a class="button-card" href="{{ url('/alunos') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/alunos/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/alunos/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/alunos/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
+<div class="botoes">
+        <div class="card">
+            <h4>Alunos</h4>
+            <a class="button botao" href="{{ route('alunos.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('alunos.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Categorias</h4>
+            <a class="button botao" href="{{ route('categorias.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('categorias.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Comprovantes</h4>
+            <a class="button botao" href="{{ route('comprovantes.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('comprovantes.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Cursos</h4>
+            <a class="button botao" href="{{ route('cursos.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('cursos.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Declarações</h4>
+            <a class="button botao" href="{{ route('declaracoes.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('declaracoes.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Documentos</h4>
+            <a class="button botao" href="{{ route('documentos.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('documentos.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Niveis</h4>
+            <a class="button botao" href="{{ route('nivels.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('nivels.create') }}">Create</a></button>
+        </div>
+        <div class="card">
+            <h4>Turmas</h4>
+            <a class="button botao" href="{{ route('turmas.index') }}">Index</a></button>
+            <a class="button botao" href="{{ route('turmas.create') }}">Create</a></button>
+        </div>
     </div>
 
-    <div class="card">
-        <ul>
-            <li><h3>Categorias</h3></li>
-            <li><a class="button-card" href="{{ url('/categorias') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/categorias/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/categorias/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/categorias/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Comprovantes</h3></li>
-            <li><a class="button-card" href="{{ url('/comprovantes') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/comprovantes/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/comprovantes/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/comprovantes/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Cursos</h3></li>
-            <li><a class="button-card" href="{{ url('/cursos') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/cursos/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/cursos/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/cursos/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Declarações</h3></li>
-            <li><a class="button-card" href="{{ url('/decaracoes') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/decaracoes/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/decaracoes/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/decaracoes/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Documentos</h3></li>
-            <li><a class="button-card" href="{{ url('/documentos') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/documentos/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/documentos/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/documentos/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Niveis</h3></li>
-            <li><a class="button-card" href="{{ url('/nivels') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/nivels/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/nivels/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/nivels/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <ul>
-            <li><h3>Turmas</h3></li>
-            <li><a class="button-card" href="{{ url('/turmas') }}"><strong>Index</strong></a></li>
-            <li><a class="button-card" href="{{ url('/turmas/create') }}"><strong>Create</strong></a></li>
-            <li><a class="button-card" href="{{ url('/turmas/show') }}"><strong>Show</strong></a></li>
-            <li><a class="button-card" href="{{ url('/turmas/edit') }}"><strong>Edit</strong></a></li>
-        </ul>
-    </div>
-</div>
-
-
-@endsection
+    @endsection

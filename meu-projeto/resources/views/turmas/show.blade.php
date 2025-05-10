@@ -1,3 +1,28 @@
-<div>
-    <!-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Marie Curie -->
+@extends('layouts.app')
+
+@section('title', 'Show Nivel')
+
+@section('content')
+
+<div class="d-flex justify-content-between align-items-center">
+    <h1>Sobre a Turma</h1>
+    <a href="{{ route('turmas.index') }}" class="button">Voltar</a>
 </div>
+
+<table class="table table-white mt-3">
+    <tr>
+        <th>ID</th>
+        <th>ANO</th>
+        <th>CURSO</th>
+    </tr>
+    <tr>
+        <td>{{ $turma->id }}</td>
+        <td>{{ $turma->ano }}</td>
+        <td>
+            {{ $turma->curso->nome ?? 'Curso não encontrado' }}
+        </td>
+
+    </tr>
+</table>
+
+@endsection

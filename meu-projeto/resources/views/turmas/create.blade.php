@@ -23,11 +23,13 @@
 <form action="{{ route('turmas.store') }}" method="POST">
     @csrf
     <div class="mb-3">
-        <div class="mb_3"><label for="ano" class="form-label">Ano</label>
+        <div class="mb_3">
+            <label for="ano" class="form-label">Ano</label>
             <input type="text" class="form-control" id="ano" name="ano" value="{{ old('ano') }}" required>
         </div>
 
-        <div class="mb_3"><label for="curso_id" class="form-label">Curso</label>
+        <div class="mb_3">
+            <label for="curso_id" class="form-label">Curso</label>
             <select class="form-select" id="curso_id" name="curso_id" required>
                 <option value="">Selecione um curso</option>
                 @foreach($cursos as $curso)

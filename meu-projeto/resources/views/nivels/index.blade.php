@@ -13,6 +13,7 @@
         <tr>
             <th>ID</th>
             <th>NOME</th>
+            <th class="d-flex justify-content-end gap-1">AÇÕES</th>
         </tr>
     </thead>
     <tbody>
@@ -20,16 +21,14 @@
         <tr>
             <td>{{ $nivel->id }}</td>
             <td>{{ $nivel->nome }}</td>
-            <td class="d-flex justify-content-end">
-                <button><a href="{{ route( 'nivels.show', $nivel->id ) }}">Show</a></button>
-                <button><a href="{{ route( 'nivels.edit', $nivel->id ) }}">edit</a></button>
-                <button>
-                    <form action="{{ route('nivels.destroy', $nivel->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this item?');">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                </button>
+            <td class="d-flex justify-content-end gap-1">
+                <a href="{{ route('nivels.show', $nivel->id) }}" class="button button-show material-symbols-outlined">visibility</a>
+                <a href="{{ route('nivels.edit', $nivel->id) }}" class="button button-edit material-symbols-outlined">edit</a>
+                <form action="{{ route('nivels.destroy', $nivel->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este item?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="button button-delete material-symbols-outlined">delete</button>
+                </form>
             </td>
         </tr>
         @endforeach
