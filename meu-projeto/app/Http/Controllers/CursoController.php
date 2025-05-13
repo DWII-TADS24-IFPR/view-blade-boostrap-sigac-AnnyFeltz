@@ -40,7 +40,7 @@ class CursoController extends Controller
 
         Curso::create($request->all());
 
-        return redirect()->route('cursos.index')->with('success', 'Curso criado com sucesso.');
+        return redirect()->route('cursos.index')->with('success', 'Curso criado com sucesso!');
     }
 
     /**
@@ -59,13 +59,14 @@ class CursoController extends Controller
     {
         $curso = Curso::with('nivel')->findOrFail($id);
         $nivels = Nivel::all();
+
         return view('cursos.edit')->with(['curso' => $curso, 'nivels' => $nivels]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Curso $curso)
     {
         $request->validate([
             'nome' => 'required|string|max:255',
@@ -74,10 +75,9 @@ class CursoController extends Controller
             'nivel_id' => 'required|exists:nivels,id',
         ]);
 
-        $curso = Curso::findOrFail($id);
         $curso->update($request->all());
 
-        return redirect()->route('cursos.index')->with('success', 'Curso atualizado com sucesso.');
+        return redirect()->route('cursos.index')->with('success', 'Curso atualizado com sucesso!');
     }
 
     /**

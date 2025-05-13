@@ -21,7 +21,9 @@ class DocumentoController extends Controller
      */
     public function create()
     {
-        return view('documentos.create');
+        $categorias = \App\Models\Categoria::all();
+
+        return view('documentos.create', compact('categorias'));
     }
 
     /**
@@ -30,13 +32,18 @@ class DocumentoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'url' => 'required|string|max:255',
+            'descricao' => 'required|string|max:255',
+            'horas_in' => 'required|numeric',
+            'status' => 'required|string|max:50',
+            'comentario' => 'nullable|string',
+            'horas_out' => 'required|numeric',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
         Documento::create($request->all());
 
-        return redirect()->route('documentos.index')->with('success', 'Documento criado com sucesso.');
+        return redirect()->route('documentos.index')->with('success', 'Documento criado com sucesso!');
     }
 
     /**
@@ -54,23 +61,29 @@ class DocumentoController extends Controller
     public function edit(string $id)
     {
         $documento = Documento::findOrFail($id);
-        return view('documentos.edit')->with('documento', $documento);
+        $categorias = \App\Models\Categoria::all();
+
+        return view('documentos.edit')->with(['documento' => $documento, 'categorias' => $categorias]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Documento $documento)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'url' => 'required|string|max:255',
+            'descricao' => 'required|string|max:255',
+            'horas_in' => 'required|numeric',
+            'status' => 'required|string|max:50',
+            'comentario' => 'nullable|string',
+            'horas_out' => 'required|numeric',
+            'categoria_id' => 'required|exists:categorias,id',
         ]);
 
-        $documento = Documento::findOrFail($id);
         $documento->update($request->all());
 
-        return redirect()->route('documentos.index')->with('success', 'Documento atualizado com sucesso.');
+        return redirect()->route('documentos.index')->with('success', 'Documento atualizado com sucesso!');
     }
 
     /**

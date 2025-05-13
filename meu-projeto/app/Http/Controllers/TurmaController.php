@@ -35,9 +35,10 @@ class TurmaController extends Controller
             'ano' => 'required|integer',
             'curso_id' => 'required|exists:cursos,id',
         ]);
+
         Turma::create($request->all());
 
-        return redirect()->route('turmas.index')->with('success', 'Turma criada com sucesso.');
+        return redirect()->route('turmas.index')->with('success', 'Turma criada com sucesso!');
     }
 
     /**
@@ -46,6 +47,7 @@ class TurmaController extends Controller
     public function show(string $id)
     {
         $turma = Turma::with('curso')->findOrFail($id);
+
         return view('turmas.show')->with('turma', $turma);
     }
 
@@ -56,23 +58,23 @@ class TurmaController extends Controller
     {
         $turma = Turma::with('curso')->findOrFail($id);
         $cursos = Curso::all();
+
         return view('turmas.edit')->with(['turma' => $turma, 'cursos' => $cursos]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Turma $turma)
     {
         $request->validate([
             'ano' => 'required|integer',
             'curso_id' => 'required|exists:cursos,id',
         ]);
 
-        $turma = Turma::findOrFail($id);
         $turma->update($request->all());
 
-        return redirect()->route('turmas.index')->with('success', 'Turma atualizada com sucesso.');
+        return redirect()->route('turmas.index')->with('success', 'Turma atualizada com sucesso!');
     }
 
     /**

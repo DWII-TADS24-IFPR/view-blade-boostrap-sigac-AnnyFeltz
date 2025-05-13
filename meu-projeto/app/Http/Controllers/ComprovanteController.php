@@ -21,7 +21,10 @@ class ComprovanteController extends Controller
      */
     public function create()
     {
-        return view('comprovantes.create');
+        $alunos = \App\Models\Aluno::all();
+        $categorias = \App\Models\Categoria::all();
+
+        return view('comprovantes.create', compact('alunos', 'categorias'));
     }
 
     /**
@@ -30,13 +33,15 @@ class ComprovanteController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'horas' => 'required|numeric',
+            'atividade' => 'required|string|max:255',
+            'categoria_id' => 'required|exists:categorias,id',
+            'aluno_id' => 'required|exists:alunos,id',
         ]);
 
         Comprovante::create($request->all());
 
-        return redirect()->route('comprovantes.index')->with('success', 'Comprovante criado com sucesso.');
+        return redirect()->route('comprovantes.index')->with('success', 'Comprovante criado com sucesso!');
     }
 
     /**
@@ -54,23 +59,27 @@ class ComprovanteController extends Controller
     public function edit(string $id)
     {
         $comprovante = Comprovante::findOrFail($id);
-        return view('comprovantes.edit')->with('comprovante', $comprovante);
+        $alunos = \App\Models\Aluno::all();
+        $categorias = \App\Models\Categoria::all();
+
+        return view('comprovantes.edit')->with(['comprovante' => $comprovante, 'alunos' => $alunos, 'categorias' => $categorias]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Comprovante $comprovante)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'horas' => 'required|numeric',
+            'atividade' => 'required|string|max:255',
+            'categoria_id' => 'required|exists:categorias,id',
+            'aluno_id' => 'required|exists:alunos,id',
         ]);
 
-        $comprovante = Comprovante::findOrFail($id);
         $comprovante->update($request->all());
 
-        return redirect()->route('comprovantes.index')->with('success', 'Comprovante atualizado com sucesso.');
+        return redirect()->route('comprovantes.index')->with('success', 'Comprovante atualizado com sucesso!');
     }
 
     /**

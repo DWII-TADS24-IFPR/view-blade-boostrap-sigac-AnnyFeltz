@@ -21,7 +21,10 @@ class AlunoController extends Controller
      */
     public function create()
     {
-        return view('alunos.create');
+        $cursos = \App\Models\Curso::all();
+        $turmas = \App\Models\Turma::all();
+
+        return view('alunos.create', compact('cursos', 'turmas'));
     }
 
     /**
@@ -31,13 +34,16 @@ class AlunoController extends Controller
     {
         $request->validate([
             'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:alunos',
-            'telefone' => 'required|string|max:15',
+            'cpf' => 'required|string|max:14',
+            'email' => 'required|email|max:255',
+            'senha' => 'required|string|min:6',
+            'curso_id' => 'required|exists:cursos,id',
+            'turma_id' => 'required|exists:turmas,id',
         ]);
 
         Aluno::create($request->all());
 
-        return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso.');
+        return redirect()->route('alunos.index')->with('success', 'Aluno criado com sucesso!');
     }
 
     /**
@@ -55,25 +61,35 @@ class AlunoController extends Controller
     public function edit(string $id)
     {
         $aluno = Aluno::findOrFail($id);
-        return view('alunos.edit')->with('aluno', $aluno);
+        $cursos = \App\Models\Curso::all();
+        $turmas = \App\Models\Turma::all();
+
+        return view('alunos.edit')->with(['aluno' => $aluno, 'cursos' => $cursos, 'turmas' => $turmas]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:alunos,email,' . $id,
-            'telefone' => 'required|string|max:15',
-        ]);
+    public function update(Request $request, Aluno $aluno)
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'cpf' => 'required|string|max:14',
+        'email' => 'required|email|max:255',
+        'senha' => 'nullable|string|min:6',
+        'curso_id' => 'required|exists:cursos,id',
+        'turma_id' => 'required|exists:turmas,id',
+    ]);
 
-        $aluno = Aluno::findOrFail($id);
-        $aluno->update($request->all());
-
-        return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso.');
+    if ($request->filled('senha')) {
+        $aluno->senha = bcrypt($request->senha);
     }
+
+    $aluno->update($request->except('senha'));
+
+    return redirect()->route('alunos.index')->with('success', 'Aluno atualizado com sucesso!');
+}
+
 
     /**
      * Remove the specified resource from storage.

@@ -22,7 +22,7 @@ class NivelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|min:2|max:255',
+            'nome' => 'required|string|max:255',
         ]);
 
         Nivel::create($request->all());
@@ -41,17 +41,17 @@ class NivelController extends Controller
     public function edit(string $id)
     {
         $nivel = Nivel::findOrFail($id);
+
         return view('nivels.edit')->with('nivel', $nivel);
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Nivel $nivel)
     {
         $request->validate([
-            'nome' => 'required|string|min:2|max:255',
+            'nome' => 'required|string|max:255',
         ]);
 
-        $nivel = Nivel::findOrFail($id);
         $nivel->update($request->all());
 
         return redirect()->route('nivels.index')->with('success', 'Nível atualizado com sucesso!');

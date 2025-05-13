@@ -21,23 +21,27 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('categorias.create');
+        $cursos = \App\Models\Curso::all();
+        $turmas = \App\Models\Turma::all();
+
+        return view('categorias.create', compact('cursos', 'turmas'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
-        ]);
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'max_horas' => 'required|numeric',
+        'curso_id' => 'required|exists:cursos,id',
+    ]);
 
-        Categoria::create($request->all());
+    Categoria::create($request->all());
 
-        return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso.');
-    }
+    return redirect()->route('categorias.index')->with('success', 'Categoria criada com sucesso!');
+}
 
     /**
      * Display the specified resource.
@@ -54,24 +58,27 @@ class CategoriaController extends Controller
     public function edit(string $id)
     {
         $categoria = Categoria::findOrFail($id);
-        return view('categorias.edit')->with('categoria', $categoria);
+        $cursos = \App\Models\Curso::all();
+        $turmas = \App\Models\Turma::all();
+
+        return view('categorias.edit')->with(['categoria' => $categoria, 'cursos' => $cursos, 'turmas' => $turmas]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
-        ]);
+    public function update(Request $request, Categoria $categoria)
+{
+    $request->validate([
+        'nome' => 'required|string|max:255',
+        'max_horas' => 'required|numeric',
+        'curso_id' => 'required|exists:cursos,id',
+    ]);
 
-        $categoria = Categoria::findOrFail($id);
-        $categoria->update($request->all());
+    $categoria->update($request->all());
 
-        return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso.');
-    }
+    return redirect()->route('categorias.index')->with('success', 'Categoria atualizada com sucesso!');
+}
 
     /**
      * Remove the specified resource from storage.

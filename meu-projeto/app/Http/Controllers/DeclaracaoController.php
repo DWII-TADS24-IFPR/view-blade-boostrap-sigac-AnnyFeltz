@@ -21,7 +21,10 @@ class DeclaracaoController extends Controller
      */
     public function create()
     {
-        return view('declaracoes.create');
+        $alunos = \App\Models\Aluno::all();
+        $comprovantes = \App\Models\Comprovante::all();
+
+        return view('declaracoes.create', compact('alunos', 'comprovantes'));
     }
 
     /**
@@ -30,13 +33,15 @@ class DeclaracaoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'hash' => 'required|string|max:255',
+            'data' => 'required|date',
+            'aluno_id' => 'required|exists:alunos,id',
+            'comprovante_id' => 'required|exists:comprovantes,id',
         ]);
 
         Declaracao::create($request->all());
 
-        return redirect()->route('declaracoes.index')->with('success', 'Declaração criada com sucesso.');
+        return redirect()->route('declaracoes.index')->with('success', 'Declaração criada com sucesso!');
     }
 
     /**
@@ -54,23 +59,27 @@ class DeclaracaoController extends Controller
     public function edit(string $id)
     {
         $declaracao = Declaracao::findOrFail($id);
-        return view('declaracoes.edit')->with('declaracao', $declaracao);
+        $alunos = \App\Models\Aluno::all();
+        $comprovantes = \App\Models\Comprovante::all();
+
+        return view('declaracoes.edit')->with(['declaracao' => $declaracao, 'alunos' => $alunos, 'comprovantes' => $comprovantes]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Declaracao $declaracao)
     {
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'descricao' => 'nullable|string|max:1000',
+            'hash' => 'required|string|max:255',
+            'data' => 'required|date',
+            'aluno_id' => 'required|exists:alunos,id',
+            'comprovante_id' => 'required|exists:comprovantes,id',
         ]);
 
-        $declaracao = Declaracao::findOrFail($id);
         $declaracao->update($request->all());
 
-        return redirect()->route('declaracoes.index')->with('success', 'Declaração atualizada com sucesso.');
+        return redirect()->route('declaracoes.index')->with('success', 'Declaração atualizada com sucesso!');
     }
 
     /**
